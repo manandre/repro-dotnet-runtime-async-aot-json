@@ -12,7 +12,8 @@ cd ReproAsyncAotJson
 dotnet publish -c Release
 ```
 
-The `runtime-async` feature is enabled by default via the `RuntimeAsync` MSBuild property in the `.csproj`:
+The `runtime-async` feature is enabled by default via the `RuntimeAsync` MSBuild property in the `.csproj`.
+As of Preview 3, `<EnablePreviewFeatures>true</EnablePreviewFeatures>` is no longer required — only `<Features>runtime-async=on</Features>` is needed ([release notes](https://github.com/dotnet/core/blob/main/release-notes/11.0/preview/preview3/runtime.md#runtime-async-removes-the-preview-api-opt-in-requirement)):
 
 ```xml
 <!-- Set to false to verify the issue only occurs with runtime-async enabled -->

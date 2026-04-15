@@ -13,7 +13,6 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(RuntimeAsync)' == 'true'">
-    <EnablePreviewFeatures>true</EnablePreviewFeatures>
     <Features>$(Features);runtime-async=on</Features>
   </PropertyGroup>
 
