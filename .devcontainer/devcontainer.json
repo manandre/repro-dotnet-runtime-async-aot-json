@@ -1,0 +1,14 @@
+{
+  "name": "repro-dotnet-runtime-async-aot-json",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "postCreateCommand": "cd ReproAsyncAotJson && dotnet restore",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit"
+      ]
+    }
+  }
+}
