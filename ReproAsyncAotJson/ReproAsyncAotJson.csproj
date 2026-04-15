@@ -8,6 +8,11 @@
     <PublishAot>true</PublishAot>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <!-- Set to false to verify the issue only occurs with runtime-async enabled -->
+    <RuntimeAsync Condition="'$(RuntimeAsync)' == ''">true</RuntimeAsync>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(RuntimeAsync)' == 'true'">
     <EnablePreviewFeatures>true</EnablePreviewFeatures>
     <Features>$(Features);runtime-async=on</Features>
   </PropertyGroup>

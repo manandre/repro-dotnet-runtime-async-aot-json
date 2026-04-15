@@ -12,11 +12,18 @@ cd ReproAsyncAotJson
 dotnet publish -c Release
 ```
 
-The `runtime-async` feature is enabled via preview feature flags in the `.csproj`:
+The `runtime-async` feature is enabled by default via the `RuntimeAsync` MSBuild property in the `.csproj`:
 
 ```xml
-<EnablePreviewFeatures>true</EnablePreviewFeatures>
-<Features>$(Features);runtime-async=on</Features>
+<!-- Set to false to verify the issue only occurs with runtime-async enabled -->
+<RuntimeAsync Condition="'$(RuntimeAsync)' == ''">true</RuntimeAsync>
+```
+
+To confirm the crash is **only** triggered by `runtime-async`, pass `RuntimeAsync=false`:
+
+```bash
+dotnet publish -c Release -p:RuntimeAsync=false   # succeeds
+dotnet publish -c Release -p:RuntimeAsync=true    # fails (default)
 ```
 
 The failing pattern is the generic async overload called from a generic method:
