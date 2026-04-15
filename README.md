@@ -1,0 +1,1 @@
+# repro-dotnet-runtime-async-aot-json
