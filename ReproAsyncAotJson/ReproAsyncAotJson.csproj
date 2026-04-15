@@ -8,7 +8,6 @@
     <PublishAot>true</PublishAot>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <InvariantGlobalization>true</InvariantGlobalization>
-    <RuntimeAsync></RuntimeAsync>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(RuntimeAsync)' != ''">

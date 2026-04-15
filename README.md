@@ -8,7 +8,7 @@ https://github.com/npgsql/npgsql/actions/runs/24466578450/job/71495217567?pr=648
 ## Repro
 
 ```bash
-cd /home/runner/work/repro-dotnet-runtime-async-aot-json/repro-dotnet-runtime-async-aot-json/ReproAsyncAotJson
+cd ReproAsyncAotJson
 dotnet publish -c Release -p:RuntimeAsync=on
 ```
 
