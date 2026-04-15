@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PublishAot>true</PublishAot>
+    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <RuntimeAsync></RuntimeAsync>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(RuntimeAsync)' != ''">
+    <IlcArg Include="--runtime-async=$(RuntimeAsync)" />
+  </ItemGroup>
+
+</Project>
