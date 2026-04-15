@@ -3,7 +3,7 @@
 Minimal standalone NativeAOT repro for the ILC crash seen in:
 https://github.com/npgsql/npgsql/actions/runs/24466578450/job/71495217567?pr=6488
 
-> Requires the .NET 11 SDK.
+> Requires the .NET 11 preview SDK (`11.0.100-preview.3.26207.106` or later). See `global.json`.
 
 ## Repro
 
@@ -12,10 +12,11 @@ cd ReproAsyncAotJson
 dotnet publish -c Release
 ```
 
-The `runtime-async` feature is enabled via the first-class MSBuild property in the `.csproj`:
+The `runtime-async` feature is enabled via preview feature flags in the `.csproj`:
 
 ```xml
-<RuntimeAsync>true</RuntimeAsync>
+<EnablePreviewFeatures>true</EnablePreviewFeatures>
+<Features>$(Features);runtime-async=on</Features>
 ```
 
 The failing pattern is the generic async overload called from a generic method:
