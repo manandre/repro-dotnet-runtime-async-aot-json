@@ -3,22 +3,22 @@
 Minimal standalone NativeAOT repro for the ILC crash seen in:
 https://github.com/npgsql/npgsql/actions/runs/24466578450/job/71495217567?pr=6488
 
-> `RuntimeAsync=on` requires an ILC/toolchain version that supports `--runtime-async`.
+> Requires the .NET 11 SDK.
 
 ## Repro
 
 ```bash
 cd ReproAsyncAotJson
-dotnet publish -c Release -p:RuntimeAsync=on
+dotnet publish -c Release
 ```
 
-This project passes `--runtime-async=on` to ILC when `RuntimeAsync` is set:
+The `runtime-async` feature is enabled via the first-class MSBuild property in the `.csproj`:
 
 ```xml
-<IlcArg Include="--runtime-async=$(RuntimeAsync)" />
+<RuntimeAsync>true</RuntimeAsync>
 ```
 
-The failing pattern is the generic async overload:
+The failing pattern is the generic async overload called from a generic method:
 
 ```csharp
 await JsonSerializer.DeserializeAsync(stream, typeInfoOfT, cancellationToken)
@@ -31,3 +31,4 @@ Replace the generic `DeserializeAsync<T>` calls with the non-generic overload us
 ```csharp
 (T?)await JsonSerializer.DeserializeAsync(stream, (JsonTypeInfo)typeInfoOfT, cancellationToken)
 ```
+
